@@ -5,6 +5,7 @@ function M:online()
 end
 
 function M:offline()
+    --try to logout with the info
     self.player.status = 0
 end
 

@@ -66,7 +66,7 @@ function M:setting(pid,setting)
     if not p then return end
     p.setting.task = false
     p.setting.rob  = false
-    p.setting.famr = false
+    p.setting.farm = false
     p.setting.boss = false
     p.robot:syncsetting()
 end
