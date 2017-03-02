@@ -11,7 +11,7 @@ function M.run()
 	local match_table = {}
 	local regex = "q=([^&]*)"
 	local m = re.match(query,regex,"",match_table)
-	if m then
+	if m and m[1]~='/' then
 		ngx.log(ngx.INFO,"m2="..m[1])
 		m = re.match(m[1],"/(.+)/(.+)?")
 		if not m then

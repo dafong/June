@@ -1,0 +1,39 @@
+# BEGIN lua-resty-http
+
+dist lua-resty-http-0.09
+  aliases resty.http
+  modules lua-resty-http-0.09
+
+module lua-resty-http-0.09
+  aliases resty.http
+  section 18 175 lua-resty-http
+  section 175 211 status
+  section 211 576 features
+  section 576 3219 api
+  section 1147 3219 synopsis
+  section 3219 6440 connection
+  section 3240 3382 new
+  section 3382 4130 connect
+  section 4130 4285 set_timeout
+  section 4285 4572 ssl_handshake
+  section 4572 5649 set_keepalive
+  section 5649 6229 get_reused_times
+  section 6229 6440 close
+  section 6440 9581 requesting
+  section 6461 7663 request
+  section 7663 8363 request_uri
+  section 8363 9581 request_pipeline
+  section 9581 10615 response
+  section 9600 10338 res.body_reader
+  section 10338 10446 res:read_body
+  section 10446 10615 res:read_trailers
+  section 10615 11810 proxy
+  section 11161 11522 proxy_request
+  section 11522 11810 proxy_response
+  section 11810 13033 utility
+  section 11828 12040 parse_uri
+  section 12040 13033 get_client_body_reader
+  section 13033 13265 author
+  section 13265 14713 licence
+
+# END lua-resty-http
