@@ -4,12 +4,12 @@ cmd=$1
 
 case $cmd in
     start)
-        nginx -p `pwd`/ -c "./conf/nginx.conf"
+       openresty -p `pwd`/ -c "./conf/nginx.conf"
     ;;
     stop)
-        nginx -p `pwd`/ -s stop
+        openresty -p `pwd`/ -s stop
     ;;
     reload)
-        nginx -p `pwd`/ -s reload
+        openresty -p `pwd`/ -s reload
     ;;
 esac
