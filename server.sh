@@ -12,4 +12,7 @@ case $cmd in
     reload)
         openresty -p `pwd`/ -s reload
     ;;
+    *)
+        echo "$cmd is not supported!"
+    ;;
 esac
