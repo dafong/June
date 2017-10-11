@@ -26,23 +26,26 @@ function M:status(status)
 end
 
 function M:render(tpl,data)
-    local t = tmpl(tpl)
+    tpl = "/app/views/"..tpl
+    local t = tmpl.new(tpl)
     for k,v in pairs(data) do
         t[k] = v
     end
     local c = tostring(t)
-    self:output(200,c)
+    self:html(c)
 end
 
-function M:output(status,content)
-    ngx.status = status
+function M:html(content)
+    self:set_header('Content-Type', 'text/html; charset=UTF-8')
+    ngx.status = 200
     ngx.say(content)
 end
 
--- function M:json(data)
---     self:set_header('Content-Type', 'application/json; charset=utf-8')
---     self:output(200,json.encode(data))
--- end
+function M:json(data)
+    self:set_header('Content-Type', 'application/json; charset=utf-8')
+    ngx.status = 200
+    ngx.say(json.encode(data))
+end
 
 
 return M

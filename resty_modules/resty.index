@@ -166,3 +166,23 @@ module lua-resty-template-1.9
   section 44874 46610 license
 
 # END lua-resty-template
+# BEGIN lua-resty-cookie
+
+dist lua-resty-cookie-0.01
+  aliases resty.cookie
+  modules lua-resty-cookie-0.01
+
+module lua-resty-cookie-0.01
+  aliases resty.cookie
+  section 18 176 name
+  section 176 2188 synopsis
+  section 2188 3400 methods
+  section 2207 2392 new
+  section 2392 2547 get
+  section 2547 2715 get_all
+  section 2715 3400 set
+  section 3400 3934 installation
+  section 3934 4079 authors
+  section 4079 5626 copyright and license
+
+# END lua-resty-cookie
