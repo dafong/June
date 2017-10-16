@@ -1,8 +1,9 @@
+local log = require"june.log"
 local M={}
 
 function M:process(req,resp)
     local fs = {}
-    ngx.log(ngx.ERR,"filters: "..#self.filters)
+    log:d("filters: "..#self.filters)
     for _,f in ipairs(self.filters) do
         if f.pattern == nil or ngx.re.match(req.path,f.pattern) then
             table.insert(fs, f.func)

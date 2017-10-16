@@ -1,7 +1,7 @@
 
 local Request  = require"june.http.request"
 local Response = require"june.http.response"
-
+local log = require"june.log"
 
 local M={}
 
@@ -48,7 +48,7 @@ function M:run()
     -- iterator all modules
 
     for n,m in pairs(self.modules) do
-        ngx.log(ngx.ERR,"process module: "..n)
+        log:d("process module: "..n)
         m:process(req,resp)
     end
 
