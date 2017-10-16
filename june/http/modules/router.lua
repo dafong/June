@@ -1,5 +1,6 @@
 local M={}
 local utils = require"utils"
+local log = require"june.log"
 function M:process(req,resp)
     local path = ngx.re.sub(req.origin_uri, "^/+", "")
     local pathinfo = path:split("/")
@@ -12,15 +13,17 @@ function M:process(req,resp)
     end)
 
     if ok then
-        req.handler = e
-        req.handler_func = func
+        req:reg_module(self.name,{
+            handler = e,
+            handler_func = func
+        })
     else
         ngx.log(ngx.ERR,e)
     end
 end
 
-setmetatable( M , { __call = function(conf)
-    local ins = {}
+setmetatable( M , { __call = function(t,name,conf)
+    local ins = { name = name}
     setmetatable(ins,{ __index = M })
     return ins
 end})

@@ -1,6 +1,7 @@
 return function(req,resp)
-    if req.handler_func == nil or req.handler == nil or type(req.handler_func) ~= "function" then
+    if req.router == nil then return end
+    if req.router.handler_func == nil or req.router.handler == nil or type(req.router.handler_func) ~= "function" then
         error("june default filter can't find a mapping_func of uri of "..req.path)
     end
-    req.handler_func(req.handler,req,resp)
+    req.router.handler_func(req.router.handler,req,resp)
 end

@@ -33,13 +33,17 @@ function M:_check_default_module()
     if self.modules.filter == nil then
         self:enable("filter",require("june.http.modules.filter"))
     end
+
+    if self.modules.cookie == nil then
+        self:enable("cookie",require("june.http.modules.cookie"))
+    end
 end
 
 function M:enable(name,mod)
     if self.modules[name] ~= nil then
         error("module with same name " .. name .." already exist")
     end
-    self.modules[name] = mod(self.conf)
+    self.modules[name] = mod(name,self.conf)
 end
 
 function M:run()
@@ -53,9 +57,9 @@ function M:run()
     end
 
     -- iterator all filters
-    req.filters = req.filters or {}
+    local filters = req.filter.all or {}
 
-    for _,f in ipairs(req.filters) do
+    for _,f in ipairs(filters) do
         if f(req,resp) == false then
             break
         end

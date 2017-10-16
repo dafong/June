@@ -186,3 +186,46 @@ module lua-resty-cookie-0.01
   section 4079 5626 copyright and license
 
 # END lua-resty-cookie
+# BEGIN lua-resty-redis
+
+dist lua-resty-redis-0.25
+  aliases resty.redis
+  modules lua-resty-redis-0.25
+
+module lua-resty-redis-0.25
+  aliases resty.redis
+  section 18 165 name
+  section 165 576 description
+  section 576 3724 synopsis
+  section 3724 13033 methods
+  section 5872 6018 new
+  section 6018 6874 connect
+  section 6874 7028 set_timeout
+  section 7028 7744 set_keepalive
+  section 7744 8323 get_reused_times
+  section 8323 8540 close
+  section 8540 9199 init_pipeline
+  section 9199 9598 commit_pipeline
+  section 9598 9904 cancel_pipeline
+  section 9904 10261 hmset
+  section 10261 10471 array_to_hash
+  section 10471 12123 read_reply
+  section 12123 13033 add_commands
+  section 13033 14081 redis authentication
+  section 14081 15422 redis transactions
+  section 15422 16009 load balancing and failover
+  section 16009 16401 debugging
+  section 16401 16948 automatic error logging
+  section 16948 19309 check list for issues
+  section 19309 20196 limitations
+  section 20196 20948 installation
+  section 20948 20964 todo
+  section 20964 21251 community
+  section 20985 21121 english mailing list
+  section 21121 21251 chinese mailing list
+  section 21251 21500 bugs and patches
+  section 21500 21599 author
+  section 21599 23082 copyright and license
+  section 23082 23460 see also
+
+# END lua-resty-redis

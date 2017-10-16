@@ -3,14 +3,15 @@ local M={}
 
 function M:process(req,resp)
     local fs = {}
-    log:d("filters: "..#self.filters)
     for _,f in ipairs(self.filters) do
         if f.pattern == nil or ngx.re.match(req.path,f.pattern) then
             table.insert(fs, f.func)
         end
 
     end
-    req.filters = fs
+    req:reg_module(self.name,{
+        all = fs
+    })
 end
 
 local utils = require"utils"
@@ -50,8 +51,9 @@ setmetatable( M , {
 
     end,
 
-    __call = function(t,conf)
+    __call = function(t,name,conf)
         local ins = {
+            name = name,
             filters = {}
         }
         setmetatable(ins,{ __index = M })

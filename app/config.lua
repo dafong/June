@@ -30,7 +30,6 @@ return {
 
         filters = function(f)
             -- june default start
-            -- j:add(require"june.http.filters.cookie")
             -- j:add(require"june.http.filters.session")
 
             -- custom global filter start
