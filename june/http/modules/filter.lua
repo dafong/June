@@ -5,9 +5,8 @@ function M:process(req,resp)
     local fs = {}
     for _,f in ipairs(self.filters) do
         if f.pattern == nil or ngx.re.match(req.path,f.pattern) then
-            table.insert(fs, f.func)
+            table.insert(fs, f.handler)
         end
-
     end
     req:reg_module(self.name,{
         all = fs
@@ -37,11 +36,13 @@ function M:add(...)
     end
 
     if #p == 1 then
-        check(p[1])
-        table.insert(self.filters,{pattern = nil , func = p[1] })
+        local func = require(p[1])
+        check(func)
+        table.insert(self.filters,{pattern = nil , handler = func })
     else
-        check(p[2])
-        table.insert(self.filters,{pattern = p[1] , func = p[2] })
+        local func = require(p[2])
+        check(func)
+        table.insert(self.filters,{pattern = p[1] , handler = func })
     end
 end
 

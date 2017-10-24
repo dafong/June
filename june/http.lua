@@ -17,33 +17,35 @@ end
 
 function M:_init()
     local mf = self.conf.modules
-    if mf == nil then return end
+    if mf == nil then
+        self:_check_default_module()
+        return
+    end
     if type(mf) ~= "function" then
         return
     end
     mf(self)
-    self:_check_default_module()
 end
 
 function M:_check_default_module()
     if self.modules.router == nil then
-        self:enable("router",require("june.http.modules.router"))
+        self:use("router","june.http.modules.router")
     end
 
     if self.modules.filter == nil then
-        self:enable("filter",require("june.http.modules.filter"))
+        self:use("filter","june.http.modules.filter")
     end
 
     if self.modules.cookie == nil then
-        self:enable("cookie",require("june.http.modules.cookie"))
+        self:use("cookie","june.http.modules.cookie")
     end
 end
 
-function M:enable(name,mod)
+function M:use(name,luafile)
     if self.modules[name] ~= nil then
         error("module with same name " .. name .." already exist")
     end
-    self.modules[name] = mod(name,self.conf)
+    self.modules[name] = require(luafile)(name,self.conf)
 end
 
 function M:run()
