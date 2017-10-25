@@ -2,16 +2,23 @@ require"june.extension"
 
 local Http = require"june.http"
 
-local June = {}
+local M = {
+    conf = nil
+}
 
-function June:create_http(conf)
-    local http = Http:new(conf)
+function M:conf(conf)
+    self.conf = conf
+    return self
+end
+
+function M:create_http()
+    local http = Http:new(self.conf)
     return http
 end
 
-function June:create_socket()
+function M:create_socket()
 
 end
 
 
-return June
+return M

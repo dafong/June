@@ -1,10 +1,16 @@
 local M = {}
-local http = require"http"
+
 local util = require"utils"
+local db = require"june.utils.mysql"
+local json = require"cjson"
 
-function M:plantext(req,resp)
-
+function M:mysql(req,resp)
+	local row = db:query("select * from test.user")
+	ngx.say(json.encode(row))
+	row = db:query("update test.user set name='asd' where id = 1 ")
+	ngx.say(json.encode(row))
 end
+
 
 function M:dashboard(req,resp)
 	-- ngx.log(ngx.ERR,"dashboard")
@@ -16,7 +22,7 @@ function M:dashboard(req,resp)
 	-- ngx.log(ngx.ERR,util:tableToString(ngx.req.get_uri_args()))
 
 	resp:render("main/index.html",{
-		id  = 666,
+		wl  = "hi",
 		name= "fxl"
 	})
 end

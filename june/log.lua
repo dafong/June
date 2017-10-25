@@ -46,17 +46,18 @@ local function write(lv,s)
 end
 
 function _M:i(s)
-    if self.level >= ngx.INFO then return end
+    if ngx.INFO > self.level then return end
     write(ngx.INFO,s)
 end
 
 function _M:d(s)
-    if self.level < ngx.DEBUG then return end
+    if ngx.DEBUG > self.level   then return end
     write(ngx.DEBUG,s)
 end
 
 function _M:e(s)
-    if self.level >= ngx.ERR then return end
+    if ngx.ERR  > self.level then return end
+    ngx.say("write")
     write(ngx.ERR,s)
 end
 

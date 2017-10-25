@@ -9,7 +9,7 @@ return {
         host = "127.0.0.1",
         port = 3306,
         user = "root",
-        pwd  = "wa1234"
+        password  = ""
     },
 
     http = {

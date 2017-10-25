@@ -1,9 +1,8 @@
 local function main()
     require"june.log":override_ngx_log()
     -- require"june.log".rolling = true
-    local june = require"june.june"
-    local conf = require"config"
-    local http = june:create_http(conf)
+    local june = require"june.june":conf(require"config")
+    local http = june:create_http()
     http:run()
 end
 xpcall(main,function(error)
