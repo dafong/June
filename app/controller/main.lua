@@ -2,7 +2,12 @@ local M = {}
 
 local util = require"utils"
 local db = require"june.utils.mysql"
+local redis = require"june.utils.redis"
 local json = require"cjson"
+
+function M:redis(req,resp)
+	ngx.say(redis:get("name"))
+end
 
 function M:mysql(req,resp)
 	local row = db:query("select * from test.user")

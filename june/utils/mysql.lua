@@ -3,7 +3,6 @@ local log = require"june.log"
 local mysql = require"resty.mysql"
 local june = require"june.june"
 
-
 local function query(this,statement,est_nrows)
     local db, err = mysql:new()
     assert(db,err)
@@ -18,7 +17,7 @@ local function query(this,statement,est_nrows)
         log:e("mysql connect failed")
     end
     res, err, errno, sqlstate =  db:query(statement, est_nrows)
-    
+
     if res ~= nil then
         local ok, err = db:set_keepalive(60000, 50)
         if not ok then
