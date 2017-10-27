@@ -3,6 +3,7 @@ local utils = require"utils"
 local log = require"june.log"
 function M:process(req,resp)
     local path = ngx.re.sub(req.origin_uri, "^/+", "")
+    path       = ngx.re.sub(path, "\\?.*", "")
     local pathinfo = path:split("/")
     local ok,e,func = pcall(function()
         local c = require("controller."..pathinfo[1])

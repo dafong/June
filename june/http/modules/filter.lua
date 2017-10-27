@@ -4,7 +4,7 @@ local M={}
 function M:process(req,resp)
     local fs = {}
     for _,f in ipairs(self.filters) do
-        if f.pattern == nil or ngx.re.match(req.path,f.pattern) then
+        if f.pattern == nil or ngx.re.match(req.origin_uri,f.pattern) then
             table.insert(fs, f.handler)
         end
     end

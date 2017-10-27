@@ -27,12 +27,13 @@ return {
 
             -- custom global filter start
             -- f:add(require"filters.logfilter")
-
+            
+            -- custom url mapping filter start
+            f:add("/auth","filters.authfilter")
             -- default process filter
             f:add("june.http.filters.default")
 
-            -- custom url mapping filter start
-            -- f:add("/auth",require"filters.authfilter")
+
 
         end,
     },
