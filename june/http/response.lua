@@ -66,5 +66,8 @@ function M:json(data)
     ngx.say(json.encode(data))
 end
 
+function M:redirect(uri,status)
+    return ngx.redirect(uri,status or 302)
+end
 
 return M

@@ -3,24 +3,15 @@ local req = ngx.req
 local M = {}
 
 function M:new()
-    local headers = req.get_headers()
     req.read_body()
-    local body = {}
-    local args = req.get_post_args()
-    if args and type(args) == "table" then
-        for k,v in pairs(args) do
-            body[k] = v
-        end
-    end
-
     local ins = {
         __modules = {},
         origin_uri = ngx.var.request_uri,
         path   = ngx.var.uri,
+        headers= ngx.req.get_headers(),
         method = req.get_method(),
+        post   = req.get_post_args(),
         query  = req.get_uri_args(),
-        body   = body,
-        req_args = ngx.var.args
     }
 
     setmetatable(ins,{
@@ -35,6 +26,14 @@ function M:new()
             rawset(t,k,v)
         end})
     return ins
+end
+
+function M:arg(key,default)
+    local v = self.query[key] or self.post[key]
+    if v == nil or type(v) == "boolean" then
+        return default
+    end
+    return v
 end
 
 function M:reg_module(name,mod)
