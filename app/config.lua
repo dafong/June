@@ -14,6 +14,10 @@ return {
     },
 
     http = {
+        moudle = {
+
+
+        },
 
         router = {
 
@@ -39,7 +43,7 @@ return {
     },
 
     socket = {
-        
+
     }
 
 }

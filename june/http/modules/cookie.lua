@@ -3,8 +3,8 @@ local utils  = require"utils"
 local cookie = require"resty.cookie"
 function M:process(req,resp)
     local c = cookie:new()
-    req.cookie = c
-    resp.cookie= c
+    req:reg_module(self.name,c)
+    resp:reg_module(self.name,c)
 end
 
 setmetatable( M , { __call = function(t,name,conf)
