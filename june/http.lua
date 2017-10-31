@@ -52,20 +52,20 @@ function M:run()
     local req  = Request:new()
     local resp = Response:new()
     -- iterator all modules
+    local i,handlers =0, {}
 
     for n,m in pairs(self.modules) do
-        log:d("process module: "..n)
-        m:process(req,resp)
-    end
-
-    -- iterator all filters
-    local filters = req.filter.all or {}
-
-    for _,f in ipairs(filters) do
-        if f(req,resp) == false then
-            break
+        local handler = m:process(req,resp)
+        if type(handler) == "function" then
+            i=i+1
+            handlers[i] = {m=m,h=handler}
         end
     end
+
+    for _,handler in ipairs(handlers) do
+        handler.h(handler.m,req,resp)
+    end
+
 end
 
 return M

@@ -27,7 +27,7 @@ return {
 
             -- custom global filter start
             -- f:add(require"filters.logfilter")
-            
+
             -- custom url mapping filter start
             f:add("/auth","filters.authfilter")
             -- default process filter
@@ -39,10 +39,7 @@ return {
     },
 
     socket = {
-        modules = function(j)
-            -- you can add a new or replace a module here
-            include_mysql_redis(j)
-        end,
+        
     }
 
 }

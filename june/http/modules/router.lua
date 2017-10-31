@@ -8,7 +8,8 @@ function M:process(req,resp)
     local ok,e,func = pcall(function()
         local c = require("controller."..pathinfo[1])
         if type(c[pathinfo[2]]) ~= "function" then
-            error("not a function")
+            -- error("not a function")
+            return nil,nil
         end
         return c,c[pathinfo[2]]
     end)

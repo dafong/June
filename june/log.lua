@@ -57,7 +57,6 @@ end
 
 function _M:e(s)
     if ngx.ERR  > self.level then return end
-    ngx.say("write")
     write(ngx.ERR,s)
 end
 

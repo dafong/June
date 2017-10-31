@@ -1,6 +1,19 @@
 local log = require"june.log"
 local M={}
 
+local function handler(self,req,resp)
+    local filters = req[self.name].all
+    if #filters == 0 then return end
+    local idx = 0
+    local invoke
+    invoke = function()
+        idx = idx + 1
+        if idx > #filters then return end
+        filters[idx](req,resp,invoke)
+    end
+    invoke()
+end
+
 function M:process(req,resp)
     local fs = {}
     for _,f in ipairs(self.filters) do
@@ -11,6 +24,7 @@ function M:process(req,resp)
     req:reg_module(self.name,{
         all = fs
     })
+    return handler
 end
 
 local utils = require"utils"
