@@ -2,7 +2,7 @@ local req = ngx.req
 
 local M = {}
 
-function M:new()
+function M:new(http)
     req.read_body()
     local ins = {
         __modules = {},
@@ -12,6 +12,7 @@ function M:new()
         method = req.get_method(),
         post   = req.get_post_args(),
         query  = req.get_uri_args(),
+        http   = http
     }
 
     setmetatable(ins,{

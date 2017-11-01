@@ -5,8 +5,11 @@ local modules = {}
 
 local M = {}
 
-function M:new()
-    local ins = {__modules={}}
+function M:new(http)
+    local ins = {
+        __modules={},
+        http   = http
+    }
     setmetatable(ins,{
         __index = function(t,k)
             if self[k] then t[k] = self[k]; return self[k] end
@@ -45,7 +48,7 @@ function M:status(status)
 end
 
 function M:render(tpl,data)
-    tpl = "/app/views/"..tpl
+    tpl = table.concat({self.http.base_url,"/views/",tpl})
     local t = tmpl.new(tpl)
     for k,v in pairs(data) do
         t[k] = v

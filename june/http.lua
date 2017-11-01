@@ -8,7 +8,8 @@ local M={}
 function M:new(conf)
     local ins = {
         modules = {},
-        conf    = conf.http or {}
+        conf    = conf.http or {},
+        base_dir= ""
     }
     setmetatable(ins,{__index = self})
     ins:_init()
@@ -49,8 +50,13 @@ function M:use(name,luafile)
 end
 
 function M:run()
-    local req  = Request:new()
-    local resp = Response:new()
+    local req  = Request:new(self)
+    local resp = Response:new(self)
+    --remove leading /
+    local path = ngx.re.sub(req.path, "^/+", "")
+    self.base_url = path:dir_name()
+
+
     -- iterator all modules
     local i,handlers =0, {}
 
@@ -67,5 +73,6 @@ function M:run()
     end
 
 end
+
 
 return M

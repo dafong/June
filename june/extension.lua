@@ -14,5 +14,14 @@ local function start_with(str,sp)
     return ngx.re.match(str,"^"..sp) ~= nil
 end
 
+local function dir_name(str)
+    if str == nil then return nil end
+    str = ngx.re.sub(str,"/+$","")
+    local from,to = ngx.re.find(str,"(.*)/[^/]+","",nil,1)
+    if from == nil then return "" end
+    return str:sub(from,to)
+end
+
 string.split = split
 string.start_with = start_with
+string.dir_name = dir_name

@@ -79,4 +79,4 @@ return M
 ```
 TODO
 ====
-the controller's dir and the template's root path setting
+the controller's dir 

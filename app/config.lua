@@ -14,21 +14,7 @@ return {
     },
 
     http = {
-        moudle = {
-
-
-        },
-
-        router = {
-
-        },
-
-        view = {
-
-        },
-
         filters = function(f)
-
             -- custom global filter start
             -- f:add(require"filters.logfilter")
 
@@ -36,9 +22,6 @@ return {
             f:add("/auth","filters.authfilter")
             -- default process filter
             f:add("june.http.filters.default")
-
-
-
         end,
     },
 
