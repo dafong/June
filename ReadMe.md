@@ -26,20 +26,20 @@ Description
 ==========
 June offer a simple framework to help you build up http service rapidly.
 
-The architecture is simple and scalable, you can easyly extend it by you need.
+The architecture is simple and scalable, you can easily extend it by you need.
 
 The core concept of june is module, a module is a lua block to offer service for per request. In lua ,as you know you can require any lua file as "lua module" to call
 some function in any where, all of the module point to one instance in fact , but in Openresty ,things be a littler different. cause we want to the module's life-cycle bind to a request, if we require the lua file , they will point to one instance(per Openresty work process), that's not we want.
 
 June's module offer mechanism to create a new module instance for each request/response.
-* [module's life-cycle](#module's-life-cycle)
+* [module's life-cycle](#modules-life-cycle)
 * [june offered modules](#june-offered-modules)
     * [router](#router)
     * [filter](#filter)
     * [cookie](#cookie)
 * [how to create a module](#how-to-create-a-module)
 
-Module's life cycle
+Module life cycle
 ===================
 A module's life is binding to a request,every request has a module's instance,it's used to offer some feature for every single request,the feature looks like router , filter,cookie or session, it's not like the lua require,because lua's require will refrence same instance when different request was handled by same nginx child process,in that case mutiple request will share data, which make thins worse when we want to implement feature like cookie or session or any other feature which data should bind to a single request.
 
